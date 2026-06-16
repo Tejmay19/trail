@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 Web Song Player</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎵 Song Player</h1>
+            <p class="subtitle">Your personal music player</p>
+        </header>
+
+        <!-- Upload Section -->
+        <section class="upload-section">
+            <h2>Upload Your Music</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="file-input-wrapper">
+                    <input type="file" id="fileInput" accept=".mp3,.wav,.ogg,.m4a" required>
+                    <label for="fileInput" class="file-label">Choose File</label>
+                </div>
+                <button type="submit" class="btn btn-upload">Upload Song</button>
+            </form>
+            <p class="upload-hint">Supported formats: MP3, WAV, OGG, M4A (Max 100MB)</p>
+            <div id="uploadMessage" class="message"></div>
+        </section>
+
+        <!-- Player Section -->
+        <section class="player-section">
+            <h2>Now Playing</h2>
+            <div class="player">
+                <div class="player-display">
+                    <div class="song-info">
+                        <p class="song-title" id="songTitle">No song selected</p>
+                        <p class="song-artist">Select a song to play</p>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <span class="time" id="currentTime">0:00</span>
+                    <input type="range" id="progressBar" class="progress-bar" min="0" max="100" value="0">
+                    <span class="time" id="duration">0:00</span>
+                </div>
+
+                <!-- Controls -->
+                <div class="controls">
+                    <button id="prevBtn" class="btn btn-control" title="Previous">
+                        <span class="icon">⏮️</span>
+                    </button>
+                    <button id="playBtn" class="btn btn-play" title="Play">
+                        <span class="icon">▶️</span>
+                    </button>
+                    <button id="pauseBtn" class="btn btn-control" title="Pause" style="display: none;">
+                        <span class="icon">⏸️</span>
+                    </button>
+                    <button id="nextBtn" class="btn btn-control" title="Next">
+                        <span class="icon">⏭️</span>
+                    </button>
+                </div>
+
+                <!-- Volume Control -->
+                <div class="volume-control">
+                    <span class="volume-icon">🔊</span>
+                    <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="70">
+                    <span class="volume-percent" id="volumePercent">70%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Playlist Section -->
+        <section class="playlist-section">
+            <h2>Playlist</h2>
+            <div id="playlist" class="playlist">
+                <p class="empty-playlist">No songs uploaded yet. Upload some music to get started!</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audioPlayer"></audio>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
